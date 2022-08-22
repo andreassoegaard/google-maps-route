@@ -13,7 +13,8 @@
           >
             <span class="font-medium">Distance: </span>{{ polylineLength }} km.
           </div>
-          <div v-else class="px-4 py-2 lg:px-5 lg:py-3 whitespace-nowrap">
+          <div v-else class="px-4 py-2 lg:px-5 lg:py-3 whitespace-nowrap flex items-center">
+            <LocationMarkerIcon class="h-6 w-6 mr-1" />
             <span class="font-medium"
               >Klik på kortet for at starte din rute!</span
             >
@@ -54,7 +55,7 @@
 import { ref, onMounted, computed } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
 import { useMapStore } from "@/stores/map";
-import { BackspaceIcon, MinusCircleIcon } from "@heroicons/vue/outline";
+import { BackspaceIcon, MinusCircleIcon, LocationMarkerIcon } from "@heroicons/vue/outline";
 
 const mapsLoader = ref<Loader>();
 const mapsObject = ref<typeof google>();
