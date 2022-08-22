@@ -1,20 +1,23 @@
 <template>
-  <div class="flex flex-wrap">
+  <div class="flex flex-wrap h-full">
     <!-- <div class="w-full lg:w-3/12"></div> -->
-    <div class="w-full relative">
-      <div ref="mapElement" style="height: 100vh; width: 100%" />
+    <div class="w-full h-full relative">
+      <div ref="mapElement" class="h-full w-full" />
       <div
         class="absolute bottom-8 lg:left-1/2 left-2 transform lg:-translate-x-1/2 lg:-translate-y-1/2 text-lg lg:items-center items-start flex flex-col"
       >
-        <div class="bg-white rounded-md shadow flex mb-3">
+        <div class="bg-white rounded-md shadow flex lg:mb-3 mb-1">
           <div
             v-if="mapStore.mapMarkers.length > 0"
-            class="px-4 py-2 lg:px-5 lg:py-3 whitespace-nowrap"
+            class="px-3 py-2 text-sm lg:text-base lg:px-5 lg:py-3 whitespace-nowrap"
           >
             <span class="font-medium">Distance: </span>{{ polylineLength }} km.
           </div>
-          <div v-else class="px-4 py-2 lg:px-5 lg:py-3 whitespace-nowrap flex items-center">
-            <LocationMarkerIcon class="h-6 w-6 mr-1" />
+          <div
+            v-else
+            class="px-3 py-2 text-sm lg:text-base lg:px-5 lg:py-3 whitespace-nowrap flex items-center"
+          >
+            <LocationMarkerIcon class="h-4 w-4 lg:h-6 lg:w-6 mr-1" />
             <span class="font-medium"
               >Klik på kortet for at starte din rute!</span
             >
@@ -26,11 +29,11 @@
               mapStore.mapMarkers.length === 0
                 ? 'bg-gray-50 text-gray-400'
                 : '',
-              'px-4 py-2 lg:py-3 lg:px-5 flex items-center bg-white rounded-l-md border-r cursor-pointer whitespace-nowrap hover:bg-gray-50',
+              'px-3 py-2 lg:py-3 lg:px-5 text-sm lg:text-base flex items-center bg-white rounded-l-md border-r cursor-pointer whitespace-nowrap hover:bg-gray-50',
             ]"
             @click.prevent="removeLastMarker"
           >
-            <BackspaceIcon class="h-5 w-5 mr-1.5" />
+            <BackspaceIcon class="h-4 w-4 lg:h-6 lg:w-6 mr-1.5" />
             Slet seneste
           </div>
           <div
@@ -38,11 +41,11 @@
               mapStore.mapMarkers.length === 0
                 ? 'bg-gray-50 text-gray-400'
                 : '',
-              'px-4 py-2 lg:py-3 lg:px-5 flex items-center bg-white rounded-r-md cursor-pointer whitespace-nowrap hover:bg-gray-50',
+              'px-3 py-2 lg:py-3 lg:px-5 text-sm lg:text-base flex items-center bg-white rounded-r-md cursor-pointer whitespace-nowrap hover:bg-gray-50',
             ]"
             @click.prevent="resetMap"
           >
-            <MinusCircleIcon class="h-5 w-5 mr-1.5" />
+            <MinusCircleIcon class="h-4 w-4 lg:h-6 lg:w-6 mr-1.5" />
             Nulstil
           </div>
         </div>
@@ -55,7 +58,11 @@
 import { ref, onMounted, computed } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
 import { useMapStore } from "@/stores/map";
-import { BackspaceIcon, MinusCircleIcon, LocationMarkerIcon } from "@heroicons/vue/outline";
+import {
+  BackspaceIcon,
+  MinusCircleIcon,
+  LocationMarkerIcon,
+} from "@heroicons/vue/outline";
 
 const mapsLoader = ref<Loader>();
 const mapsObject = ref<typeof google>();
